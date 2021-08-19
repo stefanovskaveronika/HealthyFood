@@ -1,0 +1,55 @@
+﻿@model Food.Models.Recipe
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <div class="row">
+        <div class="col-md-4 mt-5"></div>
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">@Html.DisplayFor(model => model.Name)</h5>
+                <p class="text-center">
+                    Рецептот е закажан за:
+
+                    <div class="nav-item dropdown text-center">
+                        <a class="btn btn dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ден
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Понеделник</a>
+                            <a class="dropdown-item" href="#">Вторник</a>
+                            <a class="dropdown-item" href="#">Среда</a>
+                            <a class="dropdown-item" href="#">Четврток</a>
+                            <a class="dropdown-item" href="#">Петок</a>
+                            <a class="dropdown-item" href="#">Сабота</a>
+                            <a class="dropdown-item" href="#">Недела</a>
+                        </div>
+                        <input type="time" class="ml-2" id="appt" name="appt" min="00:00" max="23:00" required>
+                    </div>
+
+                </p>
+
+            </div>
+
+            <button onclick="myFunction" id="kopce" class="btn btn-success">Зачувај рецепт</button>
+
+
+            @* <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+
+
+*@
+        </div>
+    </div>
+    <a asp-controller="Favourites" asp-action="Index">Врати се назад</a>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                alert(
+                    "Вашиот рецепт е успешно закажан!"          
+                );
+            });
+        });
+    </script>

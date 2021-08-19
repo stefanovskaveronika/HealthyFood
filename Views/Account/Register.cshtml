@@ -1,0 +1,67 @@
+﻿@model Food.Models.Identity.UserRegistrationDto
+
+    @{
+        ViewData["Title"] = "Register";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+<div class="container">
+    @*<h1>Register</h1>*@
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <div class="card">
+                <article class="card-body">
+                    <form asp-action="Register" asp-controller="Account" method="post">
+
+                        <div class="registerdiv">
+
+                            <div class="form-group">
+                                @Html.ValidationSummary()
+                                <label asp-for="@Model.Email" class="control-label">Е-маил адреса</label>
+                                <br>
+                                <div>
+                                    @Html.TextBoxFor(m => m.Email, new { placeholder = "example.example@gmail.com", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Password" class="control-label">Лозинка</label>
+                                <br>
+                                <div>
+                                    @Html.PasswordFor(m => m.Password, new { placeholder = "********", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.ConfirmPassword" class="control-label">Повтори лозинка</label>
+                                <br>
+                                <div>
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "********", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                                </div>
+                            </div>
+                            @*                 <div class="form-group">
+          <div class="btn-submit">
+           <button type="submit" class="btn btn-success">Sign Up</button>
+
+           </div>
+        </div>*@
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-block"> Регистрирај се! <i class="fa fa-angle-double-right"></i></button>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Регистрирај се со Facebook <i class="fa fa-angle-double-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </article>
+            </div>
+        </div>
+    </div>
+ </div>

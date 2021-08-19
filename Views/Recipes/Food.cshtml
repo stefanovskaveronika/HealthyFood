@@ -1,0 +1,170 @@
+﻿
+
+@model List<Food.Models.Recipe>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #myInput {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+            #myTable td {
+                text-align: left;
+                padding: 12px;
+            }
+
+            #myTable tr {
+                border-bottom: 1px solid #ddd;
+            }
+
+                #myTable tr.header, #myTable tr:hover {
+                    background-color: rgb(241, 241, 241);
+                }
+    </style>
+
+</head>
+<div class="row">
+
+    <div class="container" id="filter">
+        <div class="m-3">
+            <a class="btn btn-success" asp-controller="Recipes" asp-action="Create"> + Додај рецепт</a>
+        </div>
+    </div>
+
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+
+        <table id="myTable">
+            <tr class="header">
+            </tr>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var item = Model[i];
+                @if (item.Meal == "Ручек")
+                {
+                    <tr>
+                        <td>
+                            <h4 id="name">@item.Name</h4>
+                            <img src="@item.ImageUrl" style="width: 70%" alt="Image for product!" />
+                        </td>
+                        <td style="width: 30%">
+                            <div>
+                                <p>@item.Description</p>
+                                <div>
+                                    @if (@item.Rating == 1)
+                                    {
+                                        <div>
+                                            <style>
+                                                .checked {
+                                                    color: darkorange;
+                                                }
+                                            </style>
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star "></span>
+                                            <span class="fa fa-star "></span>
+                                            <span class="fa fa-star "></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    }
+                                    @if (@item.Rating == 2)
+                                    {
+                                        <div>
+                                            <style>
+                                                .checked {
+                                                    color: darkorange;
+                                                }
+                                            </style>
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star "></span>
+                                            <span class="fa fa-star "></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    }
+                                    @if (@item.Rating == 3)
+                                    {
+                                        <div>
+                                            <style>
+                                                .checked {
+                                                    color: darkorange;
+                                                }
+                                            </style>
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star "></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    }
+                                    @if (@item.Rating == 4)
+                                    {
+                                        <div>
+                                            <style>
+                                                .checked {
+                                                    color: darkorange;
+                                                }
+                                            </style>
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    }
+
+                                    @if (@item.Rating == 5)
+                                    {
+                                        <div>
+                                            <style>
+                                                .checked {
+                                                    color: darkorange;
+                                                }
+                                            </style>
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        </div>
+                                    }
+                                    <a class="btn btn-primary mt-2 text-right" asp-action="Details" asp-route-id="@item.id">Прочитај повеќе</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+<a asp-action="Index">Врати се назад</a>

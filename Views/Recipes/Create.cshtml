@@ -1,0 +1,75 @@
+﻿@model Food.Models.Recipe
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-5 m-auto">
+    <h3>Креирај рецепт</h3>
+</div>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-5 m-auto">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label">Слика</label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Име на рецепт</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Опис на рецептот</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rating" class="control-label">Оценка</label>
+                    <input asp-for="Rating" class="form-control" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Meal" class="control-label">Оброк</label>
+                    <input asp-for="Meal" class="form-control" />
+                    <span asp-validation-for="Meal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Time" class="control-label">Време</label>
+                    <input asp-for="Time" class="form-control" />
+                    <span asp-validation-for="Time" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HowTo" class="control-label">Начин на подготовка</label>
+                    <input asp-for="HowTo" class="form-control" />
+                    <span asp-validation-for="HowTo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ingredients" class="control-label">Состојки</label>
+                    <input asp-for="Ingredients" class="form-control" />
+                    <span asp-validation-for="Ingredients" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Calories" class="control-label">Калории</label>
+                    <input asp-for="Calories" class="form-control" />
+                    <span asp-validation-for="Calories" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Креирај" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Врати се назад</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

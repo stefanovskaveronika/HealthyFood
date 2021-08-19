@@ -1,0 +1,67 @@
+﻿@model Food.Models.DTO.FavouriteDto
+@*
+    <div class="row ">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+              @if (Model.RecipeInFavouritess.Count == 0)
+              {
+                  <p>Нема активни рецепти</p>
+              }
+              else
+              {
+                  @for (int i = 0; i < Model.RecipeInFavouritess.Count; i++)
+                  {
+                      var item = Model.RecipeInFavouritess[i];
+                      <img src="@Url.Content(@item.Recipe.ImageUrl)" width="480" alt="Food Photo" />
+                      <div class="col-sm-3" style="width: 21rem ">
+                          <p class="card-title">
+                              <h5>@item.Recipe.Name</h5>
+                              <h7>@item.Recipe.Description</h7>
+
+                          </p>
+                          <p class="card-text"> @item.Recipe.Time <br /> @item.Recipe.Calories </p>
+                          <a href="#" class="btn btn-primary ">Прочитај повеќе <b>></b> </a>
+                      </div>
+
+                  }
+              }
+
+          </div>
+      </div>*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+        integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous">
+</script>
+
+<div class="container">
+    @for (int i = 0; i < Model.RecipeInFavouritess.Count; i++)
+    {
+
+        var item = Model.RecipeInFavouritess[i];
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+                <img class="card-img-top" src="@item.Recipe.ImageUrl" alt="Image for recipe!" />
+            </div>
+
+            <div class="col-sm-5" style="width: 50rem ">
+                <p class="card-title">
+                    <h5>@item.Recipe.Name</h5>
+                    <h6 class="social-icons">
+                        <i class="fas fa-clock" style="color:rgb(54,128,177)"></i>
+                        @item.Recipe.Time мин.
+                    </h6>
+                </p>
+                <p class="card-text">@item.Recipe.HowTo.Substring(0, 170) ...</p>
+                <a class="btn btn-primary" asp-controller="Recipes" asp-action="Details" asp-route-id="@item.Recipe.id">Прочитај повеќе</a>
+                <a class="btn btn-danger" asp-action="DeleteFromFavourites" asp-route-favoutiteId="@item.Recipe.id">Избриши</a>
+                <a class="btn btn-secondary" asp-controller="Recipes" asp-action="Reminder" asp-route-favoutiteId="@item.Recipe.id">Потсетник</a>
+            </div>
+
+        </div>
+        <hr class="w-50 justify-content-end mx-auto">
+    }
+
+</div>

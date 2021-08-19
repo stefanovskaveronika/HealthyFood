@@ -1,0 +1,223 @@
+﻿@*@model Food.Models.Recipe
+
+    @{
+        ViewData["Title"] = "Details";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>Recipe</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ImageUrl)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Meal)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Meal)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.HowTo)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.HowTo)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Ingredients)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Ingredients)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Calories)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Calories)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+*@
+@model Food.Models.Recipe
+
+@{
+    ViewData["Title"] = "Details";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+        integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous">
+</script>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="display-field">
+                <img src="@Url.Content(@Model.ImageUrl)" width="480" alt="Food Photo" />
+                <div>
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <span class="social-icons">
+                                    <i class="fas fa-clock" style="color:rgb(54,128,177)"></i>
+                                    Потребно време: @Html.DisplayFor(model => model.Time) мин.
+                                </span>
+                                <br />
+                                <span class="social-icons">
+                                    <i class="fab fa-nutritionix" style="color:rgb(54,128,177)"></i>
+                                    Вкупно калории: @Html.DisplayFor(model => model.Calories) cal.
+                                </span>
+                            </div>
+                            <p class="card-text">Потребни состојки:</p>
+                            @if (true)
+                            {
+                                List<string> line = new List<string>().ToList();
+                                @for (int i = 0; i < Model.Ingredients.Length; i++)
+                                {
+                                    var bu = Model.Ingredients.Split(",");
+                                    line = bu.ToList();
+
+                                }
+                                @for (int j = 0; j < line.Count; j++)
+                                {
+                                    var f = line[j];
+                                    <input id="Checkbox1" type="checkbox" />
+                                    @f;
+                                    <br />
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>@*so 16linija*@
+            </div>@*so 14*@
+        </div>@*so 13 del 1 *@
+        @*Vtora kolona*@
+        <div class="col-md-6">
+
+            <div>
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <p class="card-text"> Начин на подготвка: <br /> @Html.DisplayFor(model => model.HowTo)</p>
+                    </div>
+                    <div class="card-footer">
+
+                        <span class="social-icons"><i class="fab fa-facebook-f" style="color:  rgb(54,128,177)"></i> &nbsp;&nbsp;&nbsp; <i class="fab fa-twitter" style="color:rgb(54,128,177)"></i>&nbsp;&nbsp;&nbsp;<i class="fab fa-instagram" style="color: rgb(255,105,180)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <a asp-controller="Recipes" asp-action="AddRecipeToFavorite" asp-route-Nesto="@Model.id" class="btn btn-danger btn-sm shadow-none ml-2"><span>
+                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                         <i class="far fa-heart"></i>
+                        </span></a>
+
+                        @* asp-route-id="@item.Id"*@
+                    </div>
+                </div>
+            </div>@*zavrsuva howto*@
+            <div class="mt-5">
+                <style>
+                   
+                    .date {
+                        font-size: 11px
+                    }
+
+                    .comment-text {
+                        font-size: 12px
+                    }
+
+                    .fs-12 {
+                        font-size: 12px
+                    }
+
+                    .shadow-none {
+                        box-shadow: none
+                    }
+
+                    .name {
+                        color: #007bff
+                    }
+
+                    .cursor:hover {
+                        color: blue
+                    }
+
+                    .cursor {
+                        cursor: pointer
+                    }
+
+                    .textarea {
+                        resize: none
+                    }
+                </style>
+
+                <div class="card" style="width: 30rem;">
+                    <div class="col-md-12">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="d-flex flex-row user-info">
+                                    <img class="rounded-circle" src="data:image/png;base64,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" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">@User.Identity.Name!</span><span class="date text-black-50">Споделено - Август 2021</span></div>
+                                </div>
+
+                            </div>
+                            <div class="bg-white">
+                                <div class="d-flex flex-row fs-12">
+                                    @*<div class="like p-2 cursor"><i class="fas fa-thumbs-up" style="color:  rgb(54,128,177)"></i><span class="ml-1">Like</span></div>
+                                        <div class="like p-2 cursor"><i class="fa fa-share" style="color:  rgb(54,128,177)"></i><span class="ml-1">Share</span></div>*@
+                                    <div class="like p-2 cursor"><i class="fas fa-comment" style="color:  rgb(54,128,177)"></i><span class="ml-1">Коментирај</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-light p-2">
+                                <textarea class="form-control ml-1 shadow-none textarea"></textarea>
+                            </div>
+                            <div class="mt-2 mb-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Коментирај</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Откажи</button></div>
+
+                        </div>
+                    </div>
+                </div>@*div container zavrsuva*@
+            </div>
+        </div>@*zavrsuva kolona 2*@
+
+
+    </div>@*zatvoren za row*@
+
+
+</div>@*za celiot div*@
+
+
+<div>
+    <a asp-action="Index">Врати се назад</a>
+</div>

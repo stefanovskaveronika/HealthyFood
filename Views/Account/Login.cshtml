@@ -1,0 +1,64 @@
+﻿
+    @model Food.Models.Identity.UserLoginDto
+    @{
+        ViewData["Title"] = "Login";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+<div class="container">
+    @*<h1>Login</h1>*@
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <section>
+                <div class="card">
+                    <article class="card-body">
+
+                        <form asp-action="Login" asp-controller="Account" method="post">
+                            @Html.ValidationSummary()
+                            <div class="logindiv">
+
+                                <div class="form-group">
+                                    <label asp-for="@Model.Email">Е-маил адреса</label>
+                                    <br>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Email, new { placeholder = "example.example@gmail.com", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="@Model.Password">Лозинка</label>
+                                    <br>
+                                    <div>
+                                        @Html.PasswordFor(m => m.Password, new { placeholder = "*********", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Password)
+                                    </div>
+                                </div>
+                                @*Fali zaboravivte lozinka?*@
+
+                                <div class="form-group">
+                                    <div>
+                                        @*<button type="submit" class="btn btn-success">Login</button>*@
+                                        <button type="submit" class="btn btn-success btn-block"> Најави се! <i class="fa fa-angle-double-right"></i></button>
+
+                                    </div>
+                                </div>
+                                <div class="form-group mx-auto">
+                                    <p>
+                                        <a asp-action="Register" asp-controller="account">Регистрирај се!</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+
+                    </article>
+                </div>
+
+            </section>
+        </div>
+
+    </div>
+
+</div>
